@@ -36,6 +36,12 @@ public:
 		SNEAK,
 		AUTOFORWARD,
 
+		// Player look
+		LOOK_UP,
+		LOOK_DOWN,
+		LOOK_LEFT,
+		LOOK_RIGHT,
+
 		ESC,
 
 		// Other

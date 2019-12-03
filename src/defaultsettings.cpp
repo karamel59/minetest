@@ -70,6 +70,10 @@ void set_default_settings(Settings *settings)
 	settings->setDefault("keymap_backward", "KEY_KEY_S");
 	settings->setDefault("keymap_left", "KEY_KEY_A");
 	settings->setDefault("keymap_right", "KEY_KEY_D");
+	settings->setDefault("keymap_look_up", "KEY_UP");
+	settings->setDefault("keymap_look_down", "KEY_DOWN");
+	settings->setDefault("keymap_look_left", "KEY_LEFT");
+	settings->setDefault("keymap_look_right", "KEY_RIGHT");
 	settings->setDefault("keymap_jump", "KEY_SPACE");
 	settings->setDefault("keymap_sneak", "KEY_LSHIFT");
 	settings->setDefault("keymap_drop", "KEY_KEY_Q");
@@ -266,6 +270,8 @@ void set_default_settings(Settings *settings)
 	// Input
 	settings->setDefault("invert_mouse", "false");
 	settings->setDefault("mouse_sensitivity", "0.2");
+	settings->setDefault("key_look_sensitivity_horizontal", "100.0");
+	settings->setDefault("key_look_sensitivity_vertical", "75.0");
 	settings->setDefault("repeat_rightclick_time", "0.25");
 	settings->setDefault("safe_dig_and_place", "false");
 	settings->setDefault("random_input", "false");

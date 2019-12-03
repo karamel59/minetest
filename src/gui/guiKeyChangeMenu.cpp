@@ -46,6 +46,10 @@ enum
 	GUI_ID_KEY_BACKWARD_BUTTON,
 	GUI_ID_KEY_LEFT_BUTTON,
 	GUI_ID_KEY_RIGHT_BUTTON,
+	GUI_ID_KEY_LOOK_UP_BUTTON,
+	GUI_ID_KEY_LOOK_DOWN_BUTTON,
+	GUI_ID_KEY_LOOK_LEFT_BUTTON,
+	GUI_ID_KEY_LOOK_RIGHT_BUTTON,
 	GUI_ID_KEY_USE_BUTTON,
 	GUI_ID_KEY_FLY_BUTTON,
 	GUI_ID_KEY_FAST_BUTTON,
@@ -420,6 +424,10 @@ void GUIKeyChangeMenu::init_keys()
 	this->add_key(GUI_ID_KEY_BACKWARD_BUTTON,  wgettext("Backward"),         "keymap_backward");
 	this->add_key(GUI_ID_KEY_LEFT_BUTTON,      wgettext("Left"),             "keymap_left");
 	this->add_key(GUI_ID_KEY_RIGHT_BUTTON,     wgettext("Right"),            "keymap_right");
+	this->add_key(GUI_ID_KEY_LOOK_UP_BUTTON,   wgettext("Look up"),          "keymap_look_up");
+	this->add_key(GUI_ID_KEY_LOOK_DOWN_BUTTON, wgettext("Look down"),        "keymap_look_down");
+	this->add_key(GUI_ID_KEY_LOOK_LEFT_BUTTON, wgettext("Look left"),        "keymap_look_left");
+	this->add_key(GUI_ID_KEY_LOOK_RIGHT_BUTTON,wgettext("Look right"),       "keymap_look_right");
 	this->add_key(GUI_ID_KEY_USE_BUTTON,       wgettext("Special"),          "keymap_special1");
 	this->add_key(GUI_ID_KEY_JUMP_BUTTON,      wgettext("Jump"),             "keymap_jump");
 	this->add_key(GUI_ID_KEY_SNEAK_BUTTON,     wgettext("Sneak"),            "keymap_sneak");

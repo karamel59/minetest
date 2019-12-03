@@ -47,6 +47,10 @@ struct PlayerControl
 		bool a_down,
 		bool a_left,
 		bool a_right,
+		bool a_lookup,
+		bool a_lookdown,
+		bool a_lookleft,
+		bool a_lookright,
 		bool a_jump,
 		bool a_aux1,
 		bool a_sneak,
@@ -63,6 +67,10 @@ struct PlayerControl
 		down = a_down;
 		left = a_left;
 		right = a_right;
+		lookup = a_lookup,
+		lookdown = a_lookdown,
+		lookleft = a_lookleft,
+		lookright = a_lookright,
 		jump = a_jump;
 		aux1 = a_aux1;
 		sneak = a_sneak;
@@ -78,6 +86,10 @@ struct PlayerControl
 	bool down = false;
 	bool left = false;
 	bool right = false;
+	bool lookup = false;
+	bool lookdown = false;
+	bool lookleft = false;
+	bool lookright = false;
 	bool jump = false;
 	bool aux1 = false;
 	bool sneak = false;

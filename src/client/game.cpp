@@ -893,6 +893,8 @@ private:
 	bool m_cache_enable_noclip;
 	bool m_cache_enable_free_move;
 	f32  m_cache_mouse_sensitivity;
+	f32  m_cache_key_look_sensitivity_h;
+	f32  m_cache_key_look_sensitivity_v;
 	f32  m_cache_joystick_frustum_sensitivity;
 	f32  m_repeat_right_click_time;
 	f32  m_cache_cam_smoothing;
@@ -2419,6 +2421,19 @@ void Game::updateCameraOrientation(CameraOrientation *cam, float dtime)
 		cam->camera_pitch += input->joystick.getAxisWithoutDead(JA_FRUSTUM_VERTICAL) * c;
 	}
 
+	if (input->isKeyDown(KeyType::LOOK_UP)) {
+		cam->camera_pitch -= m_cache_key_look_sensitivity_v * dtime;
+	}
+	if (input->isKeyDown(KeyType::LOOK_DOWN)) {
+		cam->camera_pitch += m_cache_key_look_sensitivity_v * dtime;
+	}
+	if (input->isKeyDown(KeyType::LOOK_LEFT)) {
+		cam->camera_yaw += m_cache_key_look_sensitivity_h * dtime;
+	}
+	if (input->isKeyDown(KeyType::LOOK_RIGHT)) {
+		cam->camera_yaw -= m_cache_key_look_sensitivity_h * dtime;
+	}
+
 	cam->camera_pitch = rangelim(cam->camera_pitch, -89.5, 89.5);
 }
 
@@ -2436,6 +2451,10 @@ void Game::updatePlayerControl(const CameraOrientation &cam)
 		input->isKeyDown(KeyType::BACKWARD),
 		input->isKeyDown(KeyType::LEFT),
 		input->isKeyDown(KeyType::RIGHT),
+		input->isKeyDown(KeyType::LOOK_UP),
+		input->isKeyDown(KeyType::LOOK_DOWN),
+		input->isKeyDown(KeyType::LOOK_LEFT),
+		input->isKeyDown(KeyType::LOOK_RIGHT),
 		isKeyDown(KeyType::JUMP),
 		isKeyDown(KeyType::SPECIAL1),
 		isKeyDown(KeyType::SNEAK),
@@ -2457,7 +2476,11 @@ void Game::updatePlayerControl(const CameraOrientation &cam)
 			( (u32)(isKeyDown(KeyType::SPECIAL1)                      & 0x1) << 5) |
 			( (u32)(isKeyDown(KeyType::SNEAK)                         & 0x1) << 6) |
 			( (u32)(input->getLeftState()                             & 0x1) << 7) |
-			( (u32)(input->getRightState()                            & 0x1) << 8
+			( (u32)(input->getRightState()                            & 0x1) << 8) |
+			( (u32)(isKeyDown(KeyType::LOOK_UP)                       & 0x1) << 9) |
+			( (u32)(isKeyDown(KeyType::LOOK_DOWN)                     & 0x1) << 10)|
+			( (u32)(isKeyDown(KeyType::LOOK_LEFT)                     & 0x1) << 11)|
+			( (u32)(isKeyDown(KeyType::LOOK_RIGHT)                    & 0x1) << 12
 		);
 
 #ifdef ANDROID
@@ -3955,6 +3978,8 @@ void Game::readSettings()
 	m_cache_enable_particles             = g_settings->getBool("enable_particles");
 	m_cache_enable_fog                   = g_settings->getBool("enable_fog");
 	m_cache_mouse_sensitivity            = g_settings->getFloat("mouse_sensitivity");
+	m_cache_key_look_sensitivity_h       = g_settings->getFloat("key_look_sensitivity_horizontal");
+	m_cache_key_look_sensitivity_v       = g_settings->getFloat("key_look_sensitivity_vertical");
 	m_cache_joystick_frustum_sensitivity = g_settings->getFloat("joystick_frustum_sensitivity");
 	m_repeat_right_click_time            = g_settings->getFloat("repeat_rightclick_time");
 
@@ -3972,6 +3997,8 @@ void Game::readSettings()
 	m_cache_fog_start = rangelim(m_cache_fog_start, 0.0f, 0.99f);
 	m_cache_cam_smoothing = rangelim(m_cache_cam_smoothing, 0.01f, 1.0f);
 	m_cache_mouse_sensitivity = rangelim(m_cache_mouse_sensitivity, 0.001, 100.0);
+	m_cache_key_look_sensitivity_h = rangelim(m_cache_key_look_sensitivity_h, 0.001, 360.0);
+	m_cache_key_look_sensitivity_v = rangelim(m_cache_key_look_sensitivity_v, 0.001, 360.0);
 
 	m_does_lost_focus_pause_game = g_settings->getBool("pause_on_lost_focus");
 }
